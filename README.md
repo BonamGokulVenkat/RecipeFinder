@@ -10,13 +10,6 @@ It fetches recipes from the [TheMealDB API](https://www.themealdb.com/api.php) a
 
 ---
 
-## 📸 Preview  
-
-![Recipe Finder Screenshot](./screenshot.png)  
-*(Replace `screenshot.png` with an actual screenshot of your app if available)*
-
----
-
 ## ✨ Features  
 
 - 🔎 **Search recipes** by meal name or keyword.  
