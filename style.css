@@ -1,0 +1,404 @@
+/* Import a modern, clean font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+/* --- Root Variables & Base Styles --- */
+:root {
+  --primary: #ff7e5f;
+  --primary-dark: #eb5e41;
+  --primary-light: #fff0ec; /* Lighter for backgrounds */
+  --secondary: #0ba360;
+  --text-dark: #2d3748; /* Softer than pure black */
+  --text-light: #f8f9fa;
+  --background: #ffffff;
+  --background-light: #f7fafc;
+  --border-color: #e2e8f0;
+  --border-radius: 12px; /* Slightly more rounded */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif; /* Using the new font */
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* --- Header --- */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+h1 i {
+  color: var(--primary);
+  margin-right: 12px;
+}
+
+header p {
+  color: #718096; /* Softer text color */
+  font-size: 1.1rem;
+}
+
+/* --- Search & Controls --- */
+.search-container {
+  display: flex;
+  margin-bottom: 2rem;
+  gap: 10px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--background);
+  color: var(--text-dark);
+  outline: none;
+  transition: var(--transition);
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 126, 95, 0.2); /* Focus ring */
+}
+
+button {
+  background-image: linear-gradient(
+    to right,
+    #ff7e5f 0%,
+    #feb47b 51%,
+    #ff7e5f 100%
+  );
+  background-size: 200% auto;
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  background-position: right center; /* change the direction of the change here */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+#result-heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* --- Meal Cards --- */
+.meals-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.meal {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.meal:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.meal img {
+  width: 100%;
+  height: 200px; /* Taller image */
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.meal:hover img {
+  transform: scale(1.05);
+}
+
+.meal-info {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.meal-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.meal-category {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+/* --- Recipe Details View --- */
+#meal-details {
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem;
+  margin: 2rem 0;
+  /* Smooth transition for appearing */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#back-btn {
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 8px 16px;
+}
+
+#back-btn:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 126, 95, 0.3);
+}
+
+.meal-details-content {
+  /* Updated layout for wider screens */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.meal-details-img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  margin-bottom: 0;
+}
+
+.meal-details-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.meal-details-category {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.meal-details-category span {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.meal-details-instructions {
+  line-height: 1.8;
+  color: #4a5568;
+}
+
+.meal-details-instructions h3,
+.meal-details-ingredients h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--primary-light);
+  padding-bottom: 0.5rem;
+}
+
+.ingredients-list {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.ingredients-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.ingredients-list li:hover {
+  border-color: var(--primary);
+  transform: translateX(4px);
+}
+
+.ingredients-list li i {
+  color: var(--secondary);
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.youtube-link {
+  display: inline-flex; /* Use inline-flex for better alignment */
+  align-items: center;
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 18px;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.youtube-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+}
+
+.youtube-link i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* --- Utility & State Classes --- */
+#error-container {
+  background-color: rgba(255, 126, 95, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--primary-dark);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.api-link {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  color: #a0aec0;
+  opacity: 1;
+  font-size: 0.9rem;
+}
+
+.api-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* New transition for hidden class */
+.hidden {
+  display: block !important; /* Override default to allow animation */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* --- Media Queries --- */
+@media (min-width: 768px) {
+  /* Improved 2-column layout for details view on larger screens */
+  .meal-details-content {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "image info"
+      "ingredients ingredients"
+      "instructions instructions"
+      "video video";
+    align-items: start;
+  }
+  .meal-details-img {
+    grid-area: image;
+  }
+  .meal-details-title,
+  .meal-details-category {
+    grid-area: info;
+  }
+  .meal-details-instructions {
+    grid-area: instructions;
+  }
+  .meal-details-ingredients {
+    grid-area: ingredients;
+  }
+  .youtube-link {
+    grid-area: video;
+    justify-self: start;
+  }
+  .meal-details-title {
+    margin-top: -10px; /* Align title better with top of image */
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .search-container {
+    flex-direction: column;
+  }
+  button#search-btn {
+    width: 100%;
+    padding: 12px;
+  }
+  .meals-container {
+    grid-template-columns: 1fr;
+  }
+  .ingredients-list {
+    grid-template-columns: 1fr;
+  }
+}
